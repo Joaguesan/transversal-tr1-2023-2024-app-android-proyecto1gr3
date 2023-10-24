@@ -12,4 +12,6 @@ public interface TiendaAPI {
 
     @GET("/getProducts")
         Call<List<Productos.Producto>> getProductos();
+    @GET("/getPedido")
+    Call<List<Productos.Producto>> getPedido();
 }

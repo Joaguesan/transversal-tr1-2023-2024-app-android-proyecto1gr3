@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PRTakeAway</string>
+    <string name="element_text">Hola</string>
 </resources>
