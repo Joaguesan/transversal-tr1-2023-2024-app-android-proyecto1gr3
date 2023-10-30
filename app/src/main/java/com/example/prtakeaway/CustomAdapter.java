@@ -8,9 +8,11 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
-    private String[] localDataSet;
+    private List<Pedidos.Pedido> localDataSet;
 
     /**
      * Provide a reference to the type of views that you are using
@@ -24,8 +26,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             super(view);
             // Define click listener for the ViewHolder's View
             textView = view.findViewById(R.id.textView);
-            editText = view.findViewById(R.id.textView2);;
-            textView2 = view.findViewById(R.id.editText);;
+            editText = view.findViewById(R.id.editText);
+            textView2 = view.findViewById(R.id.textView2);
 
         }
 
@@ -46,7 +48,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      * @param dataSet String[] containing the data to populate views to be used
      * by RecyclerView.
      */
-    public CustomAdapter(String[] dataSet) {
+    public CustomAdapter(List<Pedidos.Pedido> dataSet) {
         localDataSet = dataSet;
     }
 
@@ -59,21 +61,27 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         return new ViewHolder(view);
     }
+    public void actualizarPedidos(List<Pedidos.Pedido> nuevopedido) {
+        localDataSet.clear(); // Limpia la lista actual
+        localDataSet.addAll(nuevopedido); // Agrega los nuevos productos
+        notifyDataSetChanged(); // Notifica al adaptador que los datos han cambiado
+    }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+        Pedidos.Pedido pedido = localDataSet.get(position);
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.getTextView().setText(localDataSet[position]);
-        viewHolder.getTextView2().setText(localDataSet[position]);
-        viewHolder.getEditView().setText(localDataSet[position]);
+        viewHolder.getTextView().setText(String.valueOf(pedido.getIDPedido()));
+        viewHolder.getTextView2().setText(pedido.getEstado());
+        viewHolder.getEditView().setText(pedido.getComentario());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return localDataSet.length;
+        return localDataSet.size();
     }
 }

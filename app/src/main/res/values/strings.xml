@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">PRTakeAway</string>
-    <string name="element_text">Hola</string>
+    <string name="tvCorreo">Correu electrònic:</string>
+    <string name="tvContraseña">Contrasenya:</string>
+    <string name="btnLogin">LOGIN</string>
+    <string name="tituloPerfil">EL TEU PERFIL</string>
+    <string name="perfilNombre">Nom:</string>
+    <string name="perfilApellido">Cognom:</string>
+    <string name="perfilCorreo">Correu:</string>
+    <string name="perfilDireccion">Direcció:</string>
+    <string name="perfilTelefono">Telèfon:</string>
+    <string name="itemBtnAfegir"> + </string>
+    <string name="mostrarTodo">Mostrar tot</string>
+    <string name="menor2">Menys de 2€</string>
+    <string name="menor5">Menys de 5€</string>
+    <string name="estatComanda">Estat de la teva comanda</string>
+    <string name="confirmar">Estàs segur de confirmar la comanda?</string>
 </resources>

@@ -22,7 +22,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
-    String URL = ""; //variable con la url a la que nos conectamos
+    String URL = "http://192.168.18.251:3000/"; //variable con la url a la que nos conectamos
     public Retrofit retrofit; //variable para el retrofit
 Button btnLogin;
 EditText etUser, etPass;
@@ -34,6 +34,9 @@ EditText etUser, etPass;
         etPass = findViewById(R.id.etPass);
         etUser = findViewById(R.id.etUser);
 
+        //usuario :  a21ismalgelo@inspedralbes.cat
+        //pass: A21ismalgelo
+
         //definimos lo que hace el boton de login
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,16 +44,16 @@ EditText etUser, etPass;
                 //cogemos los valores de los campos que ha rellenado el usuario
                 String user = etUser.getText().toString();
                 String pass = etPass.getText().toString();
-               // login(user, pass); //llamamos a la funcion
+                login(user, pass); //llamamos a la funcion
                 loginPrueba();
 
                 //Toast.makeText(LoginActivity.this, "User: "+user+" Pass: "+pass, Toast.LENGTH_SHORT).show();
             }
         });
-
-        SharedPreferences sharedPreferences = getSharedPreferences("MisPreferenciasPrueba", Context.MODE_PRIVATE);
+       /* SharedPreferences sharedPreferences = getSharedPreferences("MisPreferenciasPrueba", Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("id", 1);
         editor.putString("nombre", "nombre prueba");
         editor.putString("apellido","apellido prueba");
         editor.putInt("idCliente",7);
@@ -59,7 +62,7 @@ EditText etUser, etPass;
         editor.putString("direccion", "direccion prueba");
         editor.putString("telefono","telefono prueba");
 
-        editor.apply();
+        editor.apply();*/
     }
 
     //funcion que comprobara si el usuario puede entrar
@@ -82,17 +85,21 @@ EditText etUser, etPass;
                     RespuestaUsuario respuesta = response.body();
                     Log.d("prueba Response",respuesta.toString());
 
+
                     //usamos sharedPreferences para que sean variables globales
                     SharedPreferences sharedPreferences = getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
 
+                    Log.d("nombre",respuesta.userData.getNombre());
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("nombre", respuesta.getNombre().toString());
-                    editor.putString("apellido",respuesta.getApellido().toString());
-                    editor.putInt("idCliente",respuesta.getIdUsuario());
-                    editor.putString("contraseña",respuesta.getContrasena().toString());
-                    editor.putString("correo", respuesta.getCorreo().toString());
-                    editor.putString("direccion", respuesta.getDireccion().toString());
-                    editor.putString("telefono", respuesta.getTelefono().toString());
+
+                    editor.putInt("id", respuesta.userData.getIdUsuario());
+                    editor.putString("nombre", respuesta.userData.getNombre());
+                    editor.putString("apellido",respuesta.userData.getApellido());
+                    editor.putInt("idCliente",respuesta.userData.getIdUsuario());
+                    editor.putString("contraseña",respuesta.userData.getContrasena());
+                    editor.putString("correo", respuesta.userData.getCorreo());
+                    editor.putString("direccion", respuesta.userData.getDireccion());
+                    editor.putString("telefono", respuesta.userData.getTelefono());
 
                     editor.apply();
 
@@ -114,13 +121,15 @@ EditText etUser, etPass;
 
         String mail = etUser.getText().toString().trim();
         Pattern pattern = Patterns.EMAIL_ADDRESS;
-
+/*
         if(pattern.matcher(mail).matches()){
             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
             startActivity(intent);
         }else{
             Toast.makeText(this, "El mail no es valido!", Toast.LENGTH_SHORT).show();
 
-        }
+        }*/
+        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+        startActivity(intent);
     }
 }

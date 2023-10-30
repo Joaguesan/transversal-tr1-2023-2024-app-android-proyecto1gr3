@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PerfilActivity"
+    android:background="#2E68CD"
+    android:backgroundTint="#379BD1"
     android:padding="150px">
 
 
@@ -17,8 +19,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TU PERFIL"
-            android:textSize="45dp"
+            android:text="@string/tituloPerfil"
+            android:textSize="40dp"
             android:layout_gravity="center"
             android:textStyle="bold"
             />
@@ -27,7 +29,7 @@
             android:paddingTop="100px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre: "
+            android:text="@string/perfilNombre"
             android:textStyle="bold"
             android:textSize="25dp"
             />
@@ -36,7 +38,7 @@
             android:id="@+id/tvNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="start"
             android:text="nombre"
             android:textSize="20dp" />
 
@@ -44,7 +46,8 @@
             android:paddingTop="100px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Apellido: "
+            android:text="@string/perfilApellido"
+            android:layout_gravity="start"
             android:textStyle="bold"
             android:textSize="25dp"
             />
@@ -53,14 +56,14 @@
             android:id="@+id/tvApellido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="start"
             android:text="apellido"
             android:textSize="20dp" />
         <TextView
             android:paddingTop="100px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Correo electronico: "
+            android:text="@string/perfilCorreo"
             android:textStyle="bold"
             android:textSize="25dp"
             />
@@ -69,14 +72,15 @@
             android:id="@+id/tvCorreo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="start"
             android:text="correo"
             android:textSize="20dp" />
         <TextView
             android:paddingTop="100px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dirección: "
+            android:text="@string/perfilDireccion"
+            android:layout_gravity="start"
             android:textStyle="bold"
             android:textSize="25dp"
             />
@@ -85,7 +89,7 @@
             android:id="@+id/tvDireccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="start"
             android:text="direccion"
             android:textSize="20dp" />
 
@@ -93,7 +97,7 @@
             android:paddingTop="100px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Telefono: "
+            android:text="@string/perfilTelefono"
             android:textStyle="bold"
             android:textSize="25dp"
             />
@@ -102,7 +106,7 @@
             android:id="@+id/tvTelefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="start"
             android:text="telefono"
             android:textSize="20dp" />
 
