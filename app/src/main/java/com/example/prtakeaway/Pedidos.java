@@ -7,24 +7,28 @@ import java.util.List;
 public class Pedidos {
     private List<Pedido> pedidos;
 
-    public List<Pedido>getPedidos(){
+    public List<Pedido> getPedidos() {
         return pedidos;
     }
 
 
-    public  static class Pedido {
+    public static class Pedido {
         @SerializedName("IDPedido")
         private int IDPedido;
         @SerializedName("IDCliente")
         private int IDCliente;
         @SerializedName("FechaPedido")
         private String FechaPedido;
-        @SerializedName("Total")
-        private double Total;
+        @SerializedName("NombreProducto")
+        private String NombreProducto;
+        @SerializedName("PrecioUnitario")
+        private double PrecioUnitario;
         @SerializedName("Estado")
         private String Estado;
         @SerializedName("Comentario")
         private String Comentario;
+        @SerializedName("Cantidad")
+        private int Cantidad;
 
         public int getIDPedido() {
             return IDPedido;
@@ -40,9 +44,20 @@ public class Pedidos {
 
 
         public double getTotal() {
-            return Total;
+            return PrecioUnitario;
         }
 
+        public String getNombreProducto() {
+            return NombreProducto;
+        }
+
+        public double getPrecioUnitario() {
+            return PrecioUnitario;
+        }
+
+        public int getCantidad() {
+            return Cantidad;
+        }
 
         public String getEstado() {
             return Estado;
@@ -52,33 +67,7 @@ public class Pedidos {
         public String getComentario() {
             return Comentario;
         }
-
-        public void setIDPedido(int IDPedido) {
-            this.IDPedido = IDPedido;
-        }
-
-        public void setIDCliente(int IDCliente) {
-            this.IDCliente = IDCliente;
-        }
-
-        public void setFechaPedido(String fechaPedido) {
-            FechaPedido = fechaPedido;
-        }
-
-        public void setTotal(double total) {
-            Total = total;
-        }
-
-        public void setEstado(String estado) {
-            Estado = estado;
-        }
-
-        public void setComentario(String comentario) {
-            Comentario = comentario;
-        }
-    }
-
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
     }
 }
+
+

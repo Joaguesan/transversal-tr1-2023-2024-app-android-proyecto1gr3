@@ -1,5 +1,6 @@
 package com.example.prtakeaway;
 
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,23 +12,32 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+    public interface OnPedidoItemClickListener {
+        void onPedidoItemClick(Pedidos.Pedido pedido);
+    }
 
+    private OnPedidoItemClickListener listener;
+
+    // Constructor del adaptador que recibe el listener
+    public CustomAdapter(OnPedidoItemClickListener listener) {
+        this.listener = listener;
+    }
     private List<Pedidos.Pedido> localDataSet;
+
 
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView, textView2;
-        private final EditText editText;
+        private final TextView textView, textView2,editText ;
 
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
             textView = view.findViewById(R.id.textView);
-            editText = view.findViewById(R.id.editText);
-            textView2 = view.findViewById(R.id.textView2);
+            editText = view.findViewById(R.id.editText);;
+            textView2 = view.findViewById(R.id.textView2);;
 
         }
 
@@ -37,7 +47,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         public TextView getTextView2() {
             return textView2;
         }
-        public EditText getEditView() {
+        public TextView getEditView() {
             return editText;
         }
     }
@@ -71,13 +81,35 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         Pedidos.Pedido pedido = localDataSet.get(position);
-
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.getTextView().setText(String.valueOf(pedido.getIDPedido()));
-        viewHolder.getTextView2().setText(pedido.getEstado());
+        switch (pedido.getEstado()){
+            case "Tancades":
+                viewHolder.getTextView2().setBackgroundResource(R.color.cerrado);
+                break;
+            case "Acceptades":
+                viewHolder.getTextView2().setBackgroundResource(R.color.aceptado);
+                break;
+            case "Pendents":
+                viewHolder.getTextView2().setBackgroundResource(R.color.pendiente);
+                break;
+            case "Rebutjats":
+                viewHolder.getTextView2().setBackgroundResource(R.color.rechazado);
+        }
         viewHolder.getEditView().setText(pedido.getComentario());
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (listener != null) {
+                    listener.onPedidoItemClick(pedido);
+                }
+            }
+        });
     }
+
+
+
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override

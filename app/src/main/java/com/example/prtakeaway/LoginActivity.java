@@ -22,7 +22,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
-    String URL = "http://192.168.18.251:3000/"; //variable con la url a la que nos conectamos
+    String URL = "http://10.0.2.2:3000/"; //variable con la url a la que nos conectamos
     public Retrofit retrofit; //variable para el retrofit
 Button btnLogin;
 EditText etUser, etPass;
@@ -33,7 +33,8 @@ EditText etUser, etPass;
         btnLogin = findViewById(R.id.btnLogin);
         etPass = findViewById(R.id.etPass);
         etUser = findViewById(R.id.etUser);
-
+        etUser.setText("clientest@gmail.com");
+        etPass.setText("1234");
         //usuario :  a21ismalgelo@inspedralbes.cat
         //pass: A21ismalgelo
 
@@ -45,15 +46,14 @@ EditText etUser, etPass;
                 String user = etUser.getText().toString();
                 String pass = etPass.getText().toString();
                 login(user, pass); //llamamos a la funcion
-                loginPrueba();
+                //loginPrueba();
 
                 //Toast.makeText(LoginActivity.this, "User: "+user+" Pass: "+pass, Toast.LENGTH_SHORT).show();
             }
         });
-       /* SharedPreferences sharedPreferences = getSharedPreferences("MisPreferenciasPrueba", Context.MODE_PRIVATE);
+        /*SharedPreferences sharedPreferences = getSharedPreferences("MisPreferenciasPrueba", Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("id", 1);
         editor.putString("nombre", "nombre prueba");
         editor.putString("apellido","apellido prueba");
         editor.putInt("idCliente",7);
@@ -92,7 +92,7 @@ EditText etUser, etPass;
                     Log.d("nombre",respuesta.userData.getNombre());
                     SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                    editor.putInt("id", respuesta.userData.getIdUsuario());
+                    editor.putString("id", String.valueOf(respuesta.userData.getIdUsuario()));
                     editor.putString("nombre", respuesta.userData.getNombre());
                     editor.putString("apellido",respuesta.userData.getApellido());
                     editor.putInt("idCliente",respuesta.userData.getIdUsuario());

@@ -10,8 +10,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -28,10 +26,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ProductesActivity extends AppCompatActivity {
 
     private Retrofit retrofit; //variable para el retrofit
-    private String URL = "http://192.168.18.251:3000/"; //url para pedir los productos
+    private String URL = "http://10.0.2.2:3000/"; //url para pedir los productos
     private RecyclerView recyclerView;
     private ProductosAdapter adapter;
-    Button btnTodo, btnMenos2, btnMenos5;
 
     List<Productos.Producto> productos = new ArrayList<>(); //array donde estarán todos los productos
     List<ProductoEnCarrito> carrito = new ArrayList<>(); //array para los productos seleccionados
@@ -41,11 +38,6 @@ public class ProductesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_productes);
         //activamos poder ir atrás con el menu
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        btnTodo = findViewById(R.id.btnTodo);
-        btnMenos2 = findViewById(R.id.btnMenor2);
-        btnMenos5 = findViewById(R.id.btnMenor5);
-
 
         // Inicializa el RecyclerView y su adaptador
         recyclerView = findViewById(R.id.recyclerView);
@@ -67,7 +59,7 @@ public class ProductesActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Productos.Producto>>() {
             @Override
             public void onResponse(Call<List<Productos.Producto>> call, Response<List<Productos.Producto>> response) {
-
+                Log.d("call","ha funcionado");
                 productos = response.body();
                 adapter.actualizarProductos(productos);
                 for(Productos.Producto producto : productos){
@@ -80,28 +72,6 @@ public class ProductesActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Productos.Producto>> call, Throwable t) {
                 Log.d("error getProductos",t.getMessage());
-            }
-        });
-
-
-        btnTodo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                adapter.actualizarProductos(productos);
-            }
-        });
-        btnMenos2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                adapter.filtrarProductosPorPrecio(2.0);
-
-            }
-        });
-        btnMenos5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                adapter.filtrarProductosPorPrecio(5.0);
             }
         });
 
@@ -146,12 +116,10 @@ public class ProductesActivity extends AppCompatActivity {
         for(ProductoEnCarrito productoCarrito : carrito){
             if(productoCarrito.getNombre().equals(nombreProducto)){
                 productoCarrito.setCantidad(productoCarrito.getCantidad()+1);
-                Toast.makeText(this, nombreProducto+" añadido al carrito!", Toast.LENGTH_SHORT).show();
-
                 return;
             }
         }
-        ProductoEnCarrito productoEnCarrito = new ProductoEnCarrito(producto.getNombreProducto(), producto.getPrecioUnitario(), 1, producto.getIdProducto(), producto.getDescripcion());
+        ProductoEnCarrito productoEnCarrito = new ProductoEnCarrito(producto.getNombreProducto(), producto.getPrecioUnitario(), 1);
         carrito.add(productoEnCarrito);
 
         Toast.makeText(this, nombreProducto+" añadido al carrito!", Toast.LENGTH_SHORT).show();

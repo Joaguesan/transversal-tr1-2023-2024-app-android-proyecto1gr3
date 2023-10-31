@@ -3,17 +3,14 @@ package com.example.prtakeaway;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity {
 
     //variables para los botones del menu
     Button btnProductos, btnEstado, btnMiPerfil;
-    TextView tvTitol;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,10 +20,6 @@ public class MenuActivity extends AppCompatActivity {
         btnProductos = findViewById(R.id.btnVerProductos);
         btnEstado = findViewById(R.id.btnEstado);
         btnMiPerfil = findViewById(R.id.btnMiPerfil);
-        tvTitol = findViewById(R.id.tvTitol);
-
-        SharedPreferences sharedPreferences = getSharedPreferences("MisPreferenciasPrueba",MODE_PRIVATE);
-        tvTitol.setText("Benvolgut " + sharedPreferences.getString("nombre","")+"! ¿Que vols fer?");
 
         //agregamos a cada boton el intent para ir a cada pantalla
         btnProductos.setOnClickListener(new View.OnClickListener() {

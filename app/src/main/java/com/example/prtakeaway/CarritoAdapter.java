@@ -44,7 +44,6 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
         //Log.d("pruebaAdapter:",String.valueOf(producto.getPrecio()));
         holder.cantidadProducto.setText("Cantidad: " + String.valueOf(producto.getCantidad()));
         //Log.d("pruebaAdapter:",String.valueOf(producto.getCantidad()));
-        holder.descripcion.setText(producto.getDescripcion());
         holder.btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,10 +73,9 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
     }
 
     public static class CarritoViewHolder extends RecyclerView.ViewHolder {
-        TextView nombreProducto, precioProducto, cantidadProducto, descripcion;
+        TextView nombreProducto, precioProducto, cantidadProducto;
         Button btnEliminar;
         TextView tvPrecio;
-
 
         public CarritoViewHolder(View itemView) {
             super(itemView);
@@ -85,7 +83,6 @@ public class CarritoAdapter extends RecyclerView.Adapter<CarritoAdapter.CarritoV
             precioProducto = itemView.findViewById(R.id.productoCarritoPrecio);
             cantidadProducto = itemView.findViewById(R.id.productoCarritoCantidad);
             btnEliminar = itemView.findViewById(R.id.btnEliminar);
-            descripcion = itemView.findViewById(R.id.descripcionCarrito);
         }
     }
 
